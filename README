@@ -1,0 +1,36 @@
+Version Oct 16, 2013
+Author Michael Norris
+Feel free to copy this.
+
+The current version of my vimrc includes the evaluation of arbitrary python code inside vim, including line replacement of python expressions.
+
+An example may be the following:
+Say we want to calculate 1.0 / 713.  Then we type it on a line:
+    1.0 / 713
+Then in normal mode we type:
+    pr
+
+This will replace that line with the result of the mathematical expression.
+
+What if you want to create python variables, maybe containing strings, so that you can easily format your text?
+
+Let's say we want to type '=' 80 times to mark a new section of text.
+We want to execute a statement in python setting a variable to be equal to '='*80, then we want to evaluate that variable.
+
+So we type the following line:
+    a='='*80
+
+Then we run
+    px
+
+which will use the exec keyword to create a variable available to the python interpreter called 'a' which will have the value '='*80, which is 80 equal signs.
+
+Now we need to replace a line containing a with the value contained in a:
+    a
+
+    pr
+================================================================================
+
+And this creates a line of equal signs
+
+There are three commands right now, python replace (pr), python eval (pe), and python execute (px).  The python function EvaluateCurrentLine currently loads all local variables into python's globals, so that when we use the exec statement on a variable assignment, the variable will persist between function calls.
