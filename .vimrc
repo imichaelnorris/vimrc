@@ -5,6 +5,7 @@ set expandtab
 set laststatus=2
 "set number
 set nofoldenable
+set textwidth=80
 
 python << EOL
 import vim
@@ -31,7 +32,6 @@ def EvaluateCurrentLine(*args):
     
     for i in locals():
         globals()[i] = locals()[i]
-
 EOL
 command -narg=* PyEv python EvaluateCurrentLine(<f-args>)
 
